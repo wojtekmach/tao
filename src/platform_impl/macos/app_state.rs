@@ -462,8 +462,11 @@ fn apply_launch_activation_policy(app_delegate: &Object) {
     // to regular (default), accessory (LSUIElement=1), or prohibited (LSBackgroundOnly=1)
     // so let's not overwrite it.
     if NSBundle::mainBundle().bundlePath().hasSuffix(&NSString::from_str(".app")) {
+        dbg!("skip");
         return;
     }
+
+    dbg!("continue");
 
     // We need to delay setting the activation policy and activating the app
     // until `applicationDidFinishLaunching` has been called. Otherwise the
